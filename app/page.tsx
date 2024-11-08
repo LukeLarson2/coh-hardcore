@@ -1,3 +1,9 @@
+import Characters from "./Characters";
+
 export default function Home() {
-  return <div>Here we are</div>;
+  return (
+    <div>
+      <Characters />
+    </div>
+  );
 }
