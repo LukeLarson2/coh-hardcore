@@ -6,7 +6,18 @@ import { IoMdClose } from "react-icons/io";
 import { MdOutlineModeEditOutline } from "react-icons/md";
 
 const CharacterCard = ({ props }: { props: Character }) => {
-  const { id, name, revives, arch, origin, level, primary, secondary } = props;
+  const {
+    id,
+    name,
+    revives,
+    arch,
+    origin,
+    level,
+    primary,
+    secondary,
+    color,
+    player,
+  } = props;
 
   const [modal, setModal] = useState(false); // Modal state
   const [characterData, setCharacterData] = useState<Character>(props); // Local state for character details
@@ -49,7 +60,9 @@ const CharacterCard = ({ props }: { props: Character }) => {
     }
   };
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
+  ) => {
     const { name, value } = e.target;
     setCharacterData((prevData) => ({
       ...prevData,
@@ -57,12 +70,31 @@ const CharacterCard = ({ props }: { props: Character }) => {
     }));
   };
 
+  const getColor = () => {
+    switch (color) {
+      case "red":
+        return "bg-red-800";
+      case "blue":
+        return "bg-blue-800";
+      case "orange":
+        return "bg-orange-800";
+      case "green":
+        return "bg-green-800";
+      case "purple":
+        return "bg-purple-800";
+      case "gray":
+        return "bg-gray-800";
+      default:
+        return "bg-black";
+    }
+  };
+
   return (
     <div
       key={id}
       className="rounded flex flex-col w-64 h-fit transition-all duration-300 border-4 border-gray-200"
     >
-      <div className="bg-red-800 p-2 rounded-t relative">
+      <div className={`${getColor()} p-2 rounded-t relative`}>
         <button
           onClick={() => handleDelete()}
           className="absolute top-4 right-3 hover:opacity-75 transition-all duration-300"
@@ -76,6 +108,7 @@ const CharacterCard = ({ props }: { props: Character }) => {
           <MdOutlineModeEditOutline className="size-5" />
         </button>
         <p className="font-bold text-2xl">{name}</p>
+        <p className="font-light text-sm">{player}</p>
         <p className="font-light text-sm">
           Level {level} - {origin} - {arch}
         </p>
@@ -151,6 +184,28 @@ const CharacterCard = ({ props }: { props: Character }) => {
                 value={characterData.revives}
                 onChange={handleChange}
                 placeholder="Revives"
+                className="w-full border p-2 rounded bg-gray-900"
+              />
+              <select
+                name="color"
+                value={characterData.color}
+                onChange={handleChange}
+                className="w-full border p-2 rounded bg-gray-900 text-white"
+              >
+                <option value="red">Red</option>
+                <option value="blue">Blue</option>
+                <option value="orange">Orange</option>
+                <option value="green">Green</option>
+                <option value="purple">Purple</option>
+                <option value="gray">Gray</option>
+                <option value="black">Black</option>
+              </select>
+              <input
+                type="text"
+                name="player"
+                value={characterData.player}
+                onChange={handleChange}
+                placeholder="Player Name"
                 className="w-full border p-2 rounded bg-gray-900"
               />
               <div className="flex justify-between mt-4">

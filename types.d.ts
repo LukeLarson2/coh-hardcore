@@ -7,4 +7,6 @@ export interface Character {
   primary: string;
   secondary: string;
   revives: number;
+  color: string;
+  player: string;
 }

@@ -16,6 +16,8 @@ const AddCharacterButton = () => {
     primary: "",
     secondary: "",
     revives: 1,
+    color: "",
+    player: "",
   });
   const [modal, setModal] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -24,7 +26,9 @@ const AddCharacterButton = () => {
     setModal(value);
   };
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
+  ) => {
     const { name, value } = e.target;
     setCharacterData((prevData) => ({
       ...prevData,
@@ -56,6 +60,8 @@ const AddCharacterButton = () => {
         primary: "",
         secondary: "",
         revives: 1,
+        color: "",
+        player: "",
       });
     } catch (error) {
       console.error("Error:", error);
@@ -126,6 +132,31 @@ const AddCharacterButton = () => {
                 value={characterData.revives}
                 onChange={handleChange}
                 placeholder="Revives"
+                className="w-full border p-2 rounded bg-gray-900"
+              />
+              <select
+                name="color"
+                value={characterData.color}
+                onChange={handleChange}
+                className="w-full border p-2 rounded bg-gray-900 text-white"
+              >
+                <option value="" disabled>
+                  Select Color
+                </option>
+                <option value="red">Red</option>
+                <option value="blue">Blue</option>
+                <option value="orange">Orange</option>
+                <option value="green">Green</option>
+                <option value="purple">Purple</option>
+                <option value="gray">Gray</option>
+                <option value="black">Black</option>
+              </select>
+              <input
+                type="text"
+                name="player"
+                value={characterData.player}
+                onChange={handleChange}
+                placeholder="Player Name"
                 className="w-full border p-2 rounded bg-gray-900"
               />
               <div className="flex justify-between mt-4">
