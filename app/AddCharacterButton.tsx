@@ -102,14 +102,27 @@ const AddCharacterButton = () => {
                 placeholder="Origin"
                 className="w-full border p-2 rounded bg-gray-900"
               />
-              <input
-                type="text"
+              <select
                 name="arch"
                 value={characterData.arch}
                 onChange={handleChange}
-                placeholder="Archetype"
-                className="w-full border p-2 rounded bg-gray-900"
-              />
+                className="w-full border p-2 rounded bg-gray-900 text-white"
+              >
+                <option value="" disabled>
+                  Select Archetype
+                </option>
+                <option value="Blaster">Blaster</option>
+                <option value="Controller">Controller</option>
+                <option value="Defender">Defender</option>
+                <option value="Scrapper">Scrapper</option>
+                <option value="Tank">Tank</option>
+                <option value="Brute">Brute</option>
+                <option value="Mastermind">Mastermind</option>
+                <option value="Stalker">Stalker</option>
+                <option value="Dominator">Dominator</option>
+                <option value="Corruptor">Corruptor</option>
+                <option value="Sentinel">Sentinel</option>
+              </select>
               <input
                 type="text"
                 name="primary"
