@@ -65,15 +65,15 @@ const CharacterCard = ({ props }: { props: Character }) => {
       <div className="bg-red-800 p-2 rounded-t relative">
         <button
           onClick={() => handleDelete()}
-          className="absolute top-3 right-5"
+          className="absolute top-4 right-3"
         >
-          <IoMdClose />
+          <IoMdClose className="size-5" />
         </button>
         <button
           onClick={() => handleOpenModal(true)}
-          className="absolute top-3 right-10"
+          className="absolute top-4 right-10"
         >
-          <MdOutlineModeEditOutline />
+          <MdOutlineModeEditOutline className="size-5" />
         </button>
         <p className="font-bold text-2xl">{name}</p>
         <p className="font-light text-sm">
