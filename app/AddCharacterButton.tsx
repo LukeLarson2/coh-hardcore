@@ -4,6 +4,7 @@ import { Character } from "@/types";
 import React, { useState } from "react";
 import { IoMdAdd } from "react-icons/io";
 import { v4 as uuidv4 } from "uuid";
+import revalidate from "./utils/revalidatePath";
 
 const AddCharacterButton = () => {
   const [characterData, setCharacterData] = useState<Character>({
@@ -60,6 +61,7 @@ const AddCharacterButton = () => {
       console.error("Error:", error);
     } finally {
       setLoading(false);
+      revalidate("/");
     }
   };
 
