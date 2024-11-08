@@ -115,7 +115,7 @@ const AddCharacterButton = () => {
                 <option value="Controller">Controller</option>
                 <option value="Defender">Defender</option>
                 <option value="Scrapper">Scrapper</option>
-                <option value="Tank">Tank</option>
+                <option value="Tanker">Tanker</option>
                 <option value="Brute">Brute</option>
                 <option value="Mastermind">Mastermind</option>
                 <option value="Stalker">Stalker</option>

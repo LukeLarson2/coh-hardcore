@@ -5,7 +5,6 @@ export async function POST(req: NextRequest) {
   const { characterInfo } = await req.json();
 
   // Log the payload to ensure it's correctly formatted
-  console.log("Received characterInfo:", characterInfo);
 
   const supabase = createClient(
     process.env.NEXT_PUBLIC_SUPABASE_URL!,

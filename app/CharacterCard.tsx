@@ -10,7 +10,7 @@ const archetypes = [
   "Controller",
   "Defender",
   "Scrapper",
-  "Tank",
+  "Tanker",
   "Brute",
   "Mastermind",
   "Stalker",
