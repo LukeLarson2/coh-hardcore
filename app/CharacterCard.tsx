@@ -65,13 +65,13 @@ const CharacterCard = ({ props }: { props: Character }) => {
       <div className="bg-red-800 p-2 rounded-t relative">
         <button
           onClick={() => handleDelete()}
-          className="absolute top-4 right-3"
+          className="absolute top-4 right-3 hover:opacity-75 transition-all duration-300"
         >
           <IoMdClose className="size-5" />
         </button>
         <button
           onClick={() => handleOpenModal(true)}
-          className="absolute top-4 right-10"
+          className="absolute top-4 right-10 hover:opacity-75 transition-all duration-300"
         >
           <MdOutlineModeEditOutline className="size-5" />
         </button>
