@@ -113,7 +113,7 @@ const CharacterCard = ({ props }: { props: Character }) => {
       <div className={`${getColor()} p-2 rounded-t relative`}>
         <button
           onClick={() => handleDelete()}
-          className="absolute top-3 right-3 hover:opacity-75 transition-all duration-300"
+          className="absolute bottom-3 right-10 hover:opacity-75 transition-all duration-300"
         >
           <FaTrashCan className="size-5" />
         </button>
