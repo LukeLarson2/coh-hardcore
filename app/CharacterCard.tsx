@@ -2,7 +2,7 @@
 import { Character } from "@/types";
 import React, { useState } from "react";
 import revalidate from "./utils/revalidatePath";
-import { IoMdClose } from "react-icons/io";
+import { FaTrashCan } from "react-icons/fa6";
 import { MdOutlineModeEditOutline } from "react-icons/md";
 
 const archetypes = [
@@ -115,7 +115,7 @@ const CharacterCard = ({ props }: { props: Character }) => {
           onClick={() => handleDelete()}
           className="absolute top-3 right-3 hover:opacity-75 transition-all duration-300"
         >
-          <IoMdClose className="size-5" />
+          <FaTrashCan className="size-5" />
         </button>
         <button
           onClick={() => handleOpenModal(true)}
