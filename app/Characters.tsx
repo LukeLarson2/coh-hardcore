@@ -26,7 +26,7 @@ const Characters = async () => {
   return (
     <div className="flex w-full h-full p-12 flex-col">
       <AddCharacterButton />
-      <div className="grid grid-cols-3 gap-18 w-full h-full py-12">
+      <div className="grid grid-cols-4 gap-8 w-full h-full place-items-center place-content-center py-12">
         {data.map((toon) => (
           <CharacterCard key={toon.id} props={toon} />
         ))}
