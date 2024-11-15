@@ -137,8 +137,8 @@ const CharacterCard = ({ props }: { props: Character }) => {
       key={id}
       className="flex w-full h-full place-content-center place-items-center"
     >
-      <div className="rounded flex flex-col w-fit min-w-64 h-fit transition-all duration-300 border-4 bg-black border-gray-200 ">
-        <div className={`${getColor()} p-2 rounded-t relative`}>
+      <div className="rounded flex flex-col w-fit min-w-64 h-fit transition-all duration-300 bg-black shadow-[0px_0px_6px_6px] shadow-white ">
+        <div className={`${getColor()} p-2 relative rounded-t`}>
           {!isGraveyardPath && (
             <button
               onClick={() => handleOpenModal(true)}
@@ -147,9 +147,7 @@ const CharacterCard = ({ props }: { props: Character }) => {
               <MdOutlineModeEditOutline className="size-5" />
             </button>
           )}
-          <div className="flex place-items-center w-full h-full space-x-2">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src={getArchIcon()} alt={arch} className="w-6 h-6" />
+          <div className="flex place-items-center w-full h-full">
             <p className="font-bold text-2xl text-left flex justify-start">
               {name}
             </p>
@@ -160,6 +158,12 @@ const CharacterCard = ({ props }: { props: Character }) => {
           <p className="font-light text-sm">{player}</p>
         </div>
         <div className="p-2 my-5 relative">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src={getArchIcon()}
+            alt={arch}
+            className="w-28 h-28 absolute top-1 left-1/2 opacity-25 -translate-x-1/2"
+          />
           <p className="font-bold text-lg">Primary</p>
           <p>{primary}</p>
           <p className="font-bold text-lg">Secondary</p>
@@ -167,9 +171,9 @@ const CharacterCard = ({ props }: { props: Character }) => {
           {!isGraveyardPath && (
             <button
               onClick={handleSendToGrave}
-              className="absolute bottom-3 right-3 hover:opacity-75 transition-all duration-300"
+              className="absolute bottom-12 right-12 hover:opacity-75 transition-all duration-300"
             >
-              <GiDeathSkull className="size-5" />
+              <GiDeathSkull className="size-7" />
             </button>
           )}
         </div>

@@ -32,7 +32,7 @@ const AddCharacterButton = () => {
     arch: "",
     primary: "",
     secondary: "",
-    revives: 1,
+    revives: 0,
     color: "",
     player: "",
   });
@@ -146,7 +146,7 @@ const AddCharacterButton = () => {
       arch: "",
       primary: "",
       secondary: "",
-      revives: 1,
+      revives: 0,
       color: "",
       player: "",
     });
@@ -258,7 +258,7 @@ const AddCharacterButton = () => {
       {reviewModal && (
         <div className="fixed inset-0 flex items-center justify-center bg-gray-800 bg-opacity-75 z-50">
           <div className="bg-black p-6 rounded shadow-lg max-w-md w-full">
-            <h2 className="text-xl font-bold mb-4">Finalize Character</h2>
+            <h2 className="text-4xl font-bold mb-4">Finalize Character</h2>
             <form className="space-y-4">
               <p>
                 <strong>Origin:</strong> {characterData.origin}
@@ -275,38 +275,50 @@ const AddCharacterButton = () => {
               <p>
                 <strong>Secondary Power:</strong> {characterData.secondary}
               </p>
-              <input
-                type="text"
-                name="name"
-                value={characterData.name}
-                onChange={handleChange}
-                placeholder="Character Name"
-                className="w-full border p-2 rounded bg-gray-900"
-              />
-              <input
-                type="number"
-                name="level"
-                value={characterData.level}
-                onChange={handleChange}
-                placeholder="Level"
-                className="w-full border p-2 rounded bg-gray-900"
-              />
-              <input
-                type="number"
-                name="revives"
-                value={characterData.revives}
-                onChange={handleChange}
-                placeholder="Revives"
-                className="w-full border p-2 rounded bg-gray-900"
-              />
-              <input
-                type="text"
-                name="player"
-                value={characterData.player}
-                onChange={handleChange}
-                placeholder="Player Name"
-                className="w-full border p-2 rounded bg-gray-900"
-              />
+              <label>
+                <p className="mt-4">Character Name</p>
+                <input
+                  type="text"
+                  name="name"
+                  value={characterData.name}
+                  onChange={handleChange}
+                  placeholder="Character Name"
+                  className="w-full border p-2 rounded bg-gray-900 mb-4"
+                />
+              </label>
+              <label>
+                <p>Level</p>
+                <input
+                  type="number"
+                  name="level"
+                  value={characterData.level}
+                  onChange={handleChange}
+                  placeholder="Level"
+                  className="w-full border p-2 rounded bg-gray-900 mb-4"
+                />
+              </label>
+              <label>
+                <p>Revives</p>
+                <input
+                  type="number"
+                  name="revives"
+                  value={characterData.revives}
+                  onChange={handleChange}
+                  placeholder="Revives"
+                  className="w-full border p-2 rounded bg-gray-900 mb-4"
+                />
+              </label>
+              <label>
+                <p>Player Name</p>
+                <input
+                  type="text"
+                  name="player"
+                  value={characterData.player}
+                  onChange={handleChange}
+                  placeholder="Player Name"
+                  className="w-full border p-2 rounded bg-gray-900 mb-4"
+                />
+              </label>
               <div className="flex justify-between mt-4">
                 <button
                   type="button"
