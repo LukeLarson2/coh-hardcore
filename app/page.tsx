@@ -2,10 +2,7 @@ import Characters from "./Characters";
 
 export default function Home() {
   return (
-    <div className="flex flex-col w-screen h-screen overflow-auto">
-      <h1 className="bg-red-950 p-12 font-bold text-3xl">
-        City of Heroes - Hardcore Toon Tracker
-      </h1>
+    <div className="flex flex-col w-full h-full overflow-y-auto overflow-x-hidden scrollbar-hidden pt-20">
       <Characters />
     </div>
   );

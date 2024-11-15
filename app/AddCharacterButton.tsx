@@ -206,7 +206,7 @@ const AddCharacterButton = () => {
       {modal && (
         <div className="fixed inset-0 flex items-center justify-center bg-gray-800 bg-opacity-75 z-50">
           <div className="bg-black p-6 rounded shadow-lg max-w-md w-full">
-            <h2 className="text-xl font-bold mb-4">Add New Character</h2>
+            <h2 className=" font-bold mb-4">Add New Character</h2>
             <form className="space-y-4">
               {options.map((option, index) => (
                 <div key={option.label}>

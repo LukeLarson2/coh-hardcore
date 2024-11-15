@@ -1,8 +1,6 @@
 import React from "react";
 import { createClient } from "@supabase/supabase-js";
 import CharacterCard from "./CharacterCard";
-import AddCharacterButton from "./AddCharacterButton";
-import RandomCharacterSpinner from "./_components/RandomCharacterSpinner";
 
 const supabase = createClient(
   process.env.NEXT_PUBLIC_SUPABASE_URL!,
@@ -25,11 +23,7 @@ const Characters = async () => {
   }
 
   return (
-    <div className="flex w-full h-full p-12 flex-col">
-      <div className="flex w-full h-full justify-start space-x-10">
-        <AddCharacterButton />
-        <RandomCharacterSpinner />
-      </div>
+    <div className="flex w-full h-full py-12 flex-col overflow-hidden">
       <div className="grid xs:grid-cols-1 md:grid-cols-4 gap-8 w-full h-full  md:place-items-center md:place-content-center xs:place-content-start py-12">
         {data.map((toon) => (
           <CharacterCard key={toon.id} props={toon} />

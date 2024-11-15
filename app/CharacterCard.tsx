@@ -1,9 +1,12 @@
 "use client";
+
 import { Character } from "@/types";
 import React, { useState } from "react";
+import { usePathname } from "next/navigation";
 import revalidate from "./utils/revalidatePath";
-import { FaTrashCan } from "react-icons/fa6";
 import { MdOutlineModeEditOutline } from "react-icons/md";
+import { GiDeathSkull } from "react-icons/gi";
+import { FaTrash } from "react-icons/fa";
 
 const archetypes = [
   "Blaster",
@@ -20,6 +23,9 @@ const archetypes = [
 ];
 
 const CharacterCard = ({ props }: { props: Character }) => {
+  const pathname = usePathname(); // Get the current URL path
+  const isGraveyardPath = pathname.includes("/graveyard"); // Check if the path contains '/graveyard'
+
   const {
     id,
     name,
@@ -39,21 +45,6 @@ const CharacterCard = ({ props }: { props: Character }) => {
 
   const handleOpenModal = (value: boolean) => setModal(value);
 
-  const handleDelete = async () => {
-    try {
-      const response = await fetch(`/api/delete?id=${id}`, {
-        method: "DELETE",
-      });
-      if (!response.ok) {
-        console.error("Error deleting character");
-      }
-    } catch (error) {
-      console.error("Error:", error);
-    } finally {
-      revalidate("/");
-    }
-  };
-
   const handleEdit = async () => {
     setLoading(true);
     try {
@@ -66,6 +57,42 @@ const CharacterCard = ({ props }: { props: Character }) => {
         throw new Error("Error updating character");
       }
       handleOpenModal(false); // Close modal after update
+      revalidate("/"); // Refresh the data
+    } catch (error) {
+      console.error("Error:", error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const handleSendToGrave = async () => {
+    setLoading(true);
+    try {
+      const response = await fetch(`/api/send-to-grave`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ characterData }),
+      });
+      if (!response.ok) {
+        throw new Error("Error sending character to graveyard");
+      }
+      revalidate("/"); // Refresh the data
+    } catch (error) {
+      console.error("Error:", error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const handleDelete = async () => {
+    setLoading(true);
+    try {
+      const response = await fetch(`/api/delete?id=${id}`, {
+        method: "DELETE",
+      });
+      if (!response.ok) {
+        throw new Error("Error deleting character");
+      }
       revalidate("/"); // Refresh the data
     } catch (error) {
       console.error("Error:", error);
@@ -112,20 +139,16 @@ const CharacterCard = ({ props }: { props: Character }) => {
     >
       <div className="rounded flex flex-col w-fit min-w-64 h-fit transition-all duration-300 border-4 bg-black border-gray-200 ">
         <div className={`${getColor()} p-2 rounded-t relative`}>
-          <button
-            onClick={() => handleDelete()}
-            className="absolute bottom-3 right-10 hover:opacity-75 transition-all duration-300"
-          >
-            <FaTrashCan className="size-5" />
-          </button>
-          <button
-            onClick={() => handleOpenModal(true)}
-            className="absolute bottom-3 right-3 hover:opacity-75 transition-all duration-300"
-          >
-            <MdOutlineModeEditOutline className="size-5" />
-          </button>
+          {!isGraveyardPath && (
+            <button
+              onClick={() => handleOpenModal(true)}
+              className="absolute bottom-3 right-3 hover:opacity-75 transition-all duration-300"
+            >
+              <MdOutlineModeEditOutline className="size-5" />
+            </button>
+          )}
           <div className="flex place-items-center w-full h-full space-x-2">
-            {/* eslint-disable-next-line @next/next/no-img-element*/}
+            {/* eslint-disable-next-line @next/next/no-img-element */}
             <img src={getArchIcon()} alt={arch} className="w-6 h-6" />
             <p className="font-bold text-2xl text-left flex justify-start">
               {name}
@@ -136,17 +159,35 @@ const CharacterCard = ({ props }: { props: Character }) => {
           </p>
           <p className="font-light text-sm">{player}</p>
         </div>
-        <div className="p-2 my-5">
+        <div className="p-2 my-5 relative">
           <p className="font-bold text-lg">Primary</p>
           <p>{primary}</p>
           <p className="font-bold text-lg">Secondary</p>
           <p>{secondary}</p>
+          {!isGraveyardPath && (
+            <button
+              onClick={handleSendToGrave}
+              className="absolute bottom-3 right-3 hover:opacity-75 transition-all duration-300"
+            >
+              <GiDeathSkull className="size-5" />
+            </button>
+          )}
         </div>
         <div className="p-2 bg-gray-900 rounded-b">
           <p className="font-bold text-lg">Revives Available</p>
           <p>{revives}</p>
         </div>
-
+        {/* Display Delete Button on Graveyard Path */}
+        {isGraveyardPath && (
+          <div className="p-2">
+            <button
+              onClick={handleDelete}
+              className="bg-red-800 text-white px-4 py-2 rounded hover:opacity-75 transition-all duration-300"
+            >
+              <FaTrash />
+            </button>
+          </div>
+        )}
         {/* Edit Modal */}
         {modal && (
           <div className="fixed inset-0 flex items-center justify-center bg-gray-800 bg-opacity-75 z-50">

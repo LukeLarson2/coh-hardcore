@@ -52,7 +52,7 @@ const RandomCharacterSpinner = () => {
         onClick={() => handleModal(true)}
         className="border-2 border-white rounded w-fit px-3 py-1 flex place-items-center place-content-center justify-between font-bold hover:bg-gray-500 transition-all duration-300"
       >
-        Toon RNG
+        RNG Spinner
       </button>
       {showModal && (
         <div
