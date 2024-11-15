@@ -11,6 +11,8 @@ export async function POST(req: NextRequest) {
     process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
   );
 
+  delete characterInfo.playstyle;
+
   try {
     const { data, error } = await supabase
       .from("characters")

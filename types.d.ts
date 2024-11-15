@@ -2,6 +2,7 @@ export interface Character {
   id: string;
   name: string;
   level: number;
+  playstyle: string;
   origin: string;
   arch: string;
   primary: string;

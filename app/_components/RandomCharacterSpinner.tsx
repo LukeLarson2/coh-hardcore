@@ -9,7 +9,10 @@ const RandomCharacterSpinner = () => {
   const [displayVal, setDisplayVal] = useState<number | null>(null); // value shown in <p>
 
   const handleSpin = () => {
-    if (maxVal <= 0) return;
+    if (maxVal <= 0) {
+      alert("The number must be greater than 0");
+      return;
+    }
 
     setIsSpinning(true);
     setGeneratedVal(null); // Reset the generated value
